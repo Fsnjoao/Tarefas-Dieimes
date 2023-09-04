@@ -1,0 +1,8 @@
+
+def mensagem():
+    return "Olá, Mundo!"
+
+from funcoes import mensagem
+
+retorno = mensagem()
+print(retorno)
