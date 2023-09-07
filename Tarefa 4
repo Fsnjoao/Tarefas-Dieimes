@@ -1,0 +1,39 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLineEdit, QLabel
+
+class MainJanela(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("Main Janela")
+        self.setGeometry(100, 100, 400, 200)
+        
+        central_widget = QWidget(self)
+        self.setCentralWidget(central_widget)
+        main_layout = QVBoxLayout()
+        central_widget.setLayout(main_layout)
+
+        self.nome_edit = QLineEdit()
+        self.mensagem_edit = QLineEdit()
+        enviar_btn = QPushButton("Enviar")
+        enviar_btn.clicked.connect(self.enviar_mensagem)
+
+        main_layout.addWidget(self.nome_edit)
+        main_layout.addWidget(self.mensagem_edit)
+        main_layout.addWidget(enviar_btn)
+
+        self.mensagem_label = QLabel("")
+
+    def enviar_mensagem(self):
+
+        nome = self.nome_edit.text()
+        mensagem = self.mensagem_edit.text()
+
+        self.mensagem_label.setText(f"Nome: {nome}\nMensagem: {mensagem}")
+        self.setCentralWidget(self.mensagem_label)
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    main_janela = MainJanela()
+    main_janela.show()
+    sys.exit(app.exec_())
